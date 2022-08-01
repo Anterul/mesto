@@ -1,0 +1,10 @@
+.place {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: 282px auto;
+  margin: 0;
+  max-width: 282px;
+  min-height: 360px;
+  background-color: #fff;
+  border-radius: 10px;
+}

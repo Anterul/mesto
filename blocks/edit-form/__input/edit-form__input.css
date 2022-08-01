@@ -1,0 +1,10 @@
+.edit-form__input {
+  margin: 75px 0 0;
+  max-width: 238px;
+  border: 0;
+  border-bottom: 1px solid #888;
+}
+
+.edit-form__input:nth-of-type(2n) {
+  margin-top: 30px;
+}

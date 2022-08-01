@@ -1,0 +1,10 @@
+.edit-form__title {
+  margin: 25px 0 0;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 22px;
+  text-align: center;
+  vertical-align: top;
+  fill: solid;
+  color: #000;
+}
