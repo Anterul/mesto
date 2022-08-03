@@ -1,0 +1,15 @@
+.popup__job-input {
+  margin: 30px 0 0;
+  padding: 0 0 13px;
+  max-width: 238px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #888;
+  
+}
+
+@media screen and (min-width: 880px) {
+  .popup__job-input {
+    max-width: 358px;
+  }
+}

@@ -33,42 +33,42 @@
         <img class="place__image" src="./images/karachaevsk.png" alt="Карачаевск">
         <h2 class="place__title">Карачаевск</h2>
         <button class="place__like-button">
-          <div class="place__like-button-image"></div>
+          <div class="place__like-button-icon place__like-button-icon_status_disabled"></div>
         </button>
       </div>
       <div class="place">
         <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
         <h2 class="place__title">Гора Эльбрус</h2>
         <button class="place__like-button">
-          <div class="place__like-button-image"></div>
+          <div class="place__like-button-icon place__like-button-icon_status_disabled"></div>
         </button>
       </div>
       <div class="place">
         <img class="place__image" src="./images/dombai.png" alt="Домбай">
         <h2 class="place__title">Домбай</h2>
         <button class="place__like-button">
-          <div class="place__like-button-image"></div>
+          <div class="place__like-button-icon place__like-button-icon_status_disabled"></div>
         </button>
       </div>
       <div class="place">
         <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
         <h2 class="place__title">Гора Эльбрус</h2>
         <button class="place__like-button">
-          <div class="place__like-button-image"></div>
+          <div class="place__like-button-icon place__like-button-icon_status_disabled"></div>
         </button>
       </div>
       <div class="place">
         <img class="place__image" src="./images/dombai.png" alt="Домбай">
         <h2 class="place__title">Домбай</h2>
         <button class="place__like-button">
-          <div class="place__like-button-image"></div>
+          <div class="place__like-button-icon place__like-button-icon_status_disabled"></div>
         </button>
       </div>
       <div class="place">
         <img class="place__image" src="./images/karachaevsk.png" alt="Карачаевск">
-        <h2 class="place__title">Карачаево-Ч...</h2>
+        <h2 class="place__title">Карачаево-Черкесия</h2>
         <button class="place__like-button">
-          <div class="place__like-button-image"></div>
+          <div class="place__like-button-icon place__like-button-icon_status_disabled"></div>
         </button>
       </div>
     </section>
@@ -76,19 +76,19 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
-
   <section class="popup">
-    <button class="close-button">
-      <div class="close-button__icon"></div>
-    </button>
-    <article class="edit-form">
-      <h2 class="edit-form__title">Редактировать профиль</h2>
-      <input class="edit-form__input">
-      <input class="edit-form__input">
-      <button class="edit-form__save-button">Сохранить</button>
+    <article class="popup__container">
+      <button class="popup__close-button">
+        <div class="popup__close-button-icon"></div>
+      </button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form">
+        <input class="popup__name-input" type="text" name="name-input" value="Жак-Ив Кусто" placeholder="Имя">
+        <input class="popup__job-input" type="text" name="job-input" value="Исследователь океана" placeholder="О себе">
+        <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
     </article>
   </section>
-
   <script src="./scripts/index.js"></script>
 </body>
 
