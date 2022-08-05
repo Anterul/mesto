@@ -1,5 +1,5 @@
 .profile__add-button {
-  margin-top: 36px;
+  margin-top: 33px;
   padding: 0;
   display: flex;
   justify-self: center;
@@ -8,12 +8,13 @@
   min-width: 282px;
   min-height: 50px;
   background-color: #000;
-  background-image: url(../../../images/add-button.svg);
+  background: url(../../../images/add-button.svg);
   background-size: 16px 16px;
   background-position: center;
   background-repeat: no-repeat;
   border: 2px solid #fff;
   border-radius: 2px;
+  box-shadow: none;
   transition: opacity .3s linear 0s;
 }
 

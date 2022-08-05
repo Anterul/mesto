@@ -19,7 +19,7 @@ editButton.addEventListener('click', popupToggle);
 // при клике на иконку крестика удаляет класс popup_opened
 closeButton.addEventListener('click', popupToggle);
 
-// функция передаёт данные из строк value в заголовок и подзаголовок
+// функция передаёт данные из input value в заголовок и подзаголовок
 function saveButtonSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;

@@ -8,11 +8,12 @@
   min-width: 20px;
   min-height: 20px;
   background-color: rgba(255, 255, 255, 0);
-  background-image: url(../../../images/close-icon.svg);
+  background: url(../../../images/close-icon.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border: 0;
+  box-shadow: none;
   z-index: 1;
   transition: opacity .3s linear 0s;
 }

@@ -12,67 +12,82 @@
 </head>
 
 <body class="page">
-  <header class="header">
-    <div class="header__logo"></div>
-  </header>
-  <main class="content">
-    <section class="profile">
-      <img class="profile__avatar" src="./images/cousteau.png" alt="Кусто">
-      <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" type="button"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
+  <div class="page-content">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/cousteau.png" alt="Кусто">
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button" type="button"></button>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+      <section class="cards">
+        <article class="card">
+          <img class="card__image" src="./images/pereslavl.png" alt="Переславль-Залесский">
+          <div class="card__like-area">
+            <h2 class="card__title">Переславль</h2>
+            <button class="card__like-button card__like-button_condition_disabled" type="button"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/abrancevo.png" alt="Музей-Заповедник Абрамцево">
+          <div class="card__like-area">
+            <h2 class="card__title">Абрамцево</h2>
+            <button class="card__like-button card__like-button_condition_disabled" type="button"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/petergof.png" alt="Петергоф дворцово-парковый ансамбль">
+          <div class="card__like-area">
+            <h2 class="card__title">Петергоф</h2>
+            <button class="card__like-button card__like-button_condition_disabled" type="button"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+          <div class="card__like-area">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button class="card__like-button card__like-button_condition_disabled" type="button"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/dombai.png" alt="Домбай">
+          <div class="card__like-area">
+            <h2 class="card__title">Домбай</h2>
+            <button class="card__like-button card__like-button_condition_disabled" type="button"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/karachaevsk.png" alt="Карачаевск">
+          <div class="card__like-area">
+            <h2 class="card__title">Карачаево-Черкесия</h2>
+            <button class="card__like-button card__like-button_condition_disabled" type="button"></button>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="popup-form">
+          <input class="popup__name-input" type="text" name="name-input" value="Жак-Ив Кусто" placeholder="Имя">
+          <input class="popup__job-input" type="text" name="job-input" value="Исследователь океана"
+            placeholder="О себе">
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
       </div>
-      <button class="profile__add-button" type="button"></button>
-    </section>
-    <section class="places">
-      <div class="place">
-        <img class="place__image" src="./images/pereslavl.png" alt="Переславль-Залесский">
-        <h2 class="place__title">Переславль</h2>
-        <button class="place__like-button"></button>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/abrancevo.png" alt="Музей-Заповедник «Абрамцево»">
-        <h2 class="place__title">Абрамцево</h2>
-        <button class="place__like-button"></button>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/petergof.png" alt="Петергоф дворцово-парковый ансамбль">
-        <h2 class="place__title">Петергоф</h2>
-        <button class="place__like-button"></button>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-        <h2 class="place__title">Гора Эльбрус</h2>
-        <button class="place__like-button"></button>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/dombai.png" alt="Домбай">
-        <h2 class="place__title">Домбай</h2>
-        <button class="place__like-button"></button>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/karachaevsk.png" alt="Карачаевск">
-        <h2 class="place__title">Карачаево-Черкесия</h2>
-        <button class="place__like-button"></button>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-  </footer>
-  <section class="popup">
-    <article class="popup__container">
-      <button class="popup__close-button"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input class="popup__name-input" type="text" name="name-input" value="Жак-Ив Кусто" placeholder="Имя">
-        <input class="popup__job-input" type="text" name="job-input" value="Исследователь океана" placeholder="О себе">
-        <button class="popup__save-button" type="submit">Сохранить</button>
-      </form>
-    </article>
-  </section>
-  <script src="./scripts/index.js"></script>
+    </div>
+    <script src="./scripts/index.js"></script>
+  </div>
 </body>
 
 </html>

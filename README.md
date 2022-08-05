@@ -7,4 +7,4 @@
 - Flexbox  
 - Grid Layout
 - BEM  
-4. [Ссылка на GitHub Pages](https://github.com/Anterul/mesto)
+4. [Ссылка на GitHub Pages](https://anterul.github.io/mesto/)

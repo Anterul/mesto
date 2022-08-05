@@ -3,18 +3,17 @@
   padding: 48px 0 36px;
   max-width: 282px;
   width: 100%;
-  text-align: left;
 }
 
-@media screen and (min-width: 586px) {
+@media screen and (min-width: 581px) {
   .footer {
-    align-self: flex-start;
+    padding-right: 299px;
   }
 }
 
 @media screen and (min-width: 880px) {
   .footer {
-    padding: 66px 0 60px;
+    padding: 66px 562px 60px 0;
     max-width: 318px;
   }
 }

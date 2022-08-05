@@ -1,21 +1,23 @@
-.place__like-button {
-  margin: 30px 20px 0 0;
+.card__like-button {
+  margin: 0;
   padding: 0;
   border: 0;
   min-width: 20px;
-  max-height: 20px;
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: end;
+  min-height: 20px;
   background-color: #fff;
-  background-image: url(../../../images/like-heart-disabled.svg);
   background-size: 20px 20px;
   background-position: center;
   background-repeat: no-repeat;
   transition: opacity .3s linear 0s;
 }
 
-.place__like-button:hover {
+.card__like-button:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+.card__like-button:active {
+  background: url(../../../images/like-icon-active.svg);
+  background-size: 20px 20px;
+  opacity: 1;
 }
