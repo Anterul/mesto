@@ -8,7 +8,7 @@
   color: #000;
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 1024px) {
   .popup__title {
     margin: 34px 0 0 36px;
     font-size: 24px;

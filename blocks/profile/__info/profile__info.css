@@ -8,7 +8,7 @@
   grid-template-rows: auto auto;
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 1024px) {
   .profile__info {
     margin-left: 30px;
     justify-self: start;
