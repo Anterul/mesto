@@ -13,12 +13,6 @@ function popupToggle() {
   popup.classList.toggle('popup_opened');
 }
 
-// при клике на кнопку с карандашом
-editButton.addEventListener('click', popupToggle);
-
-// при клике на иконку крестика удаляет класс popup_opened
-closeButton.addEventListener('click', popupToggle);
-
 // функция передаёт данные из input value в заголовок и подзаголовок
 function saveButtonSubmit(evt) {
   evt.preventDefault();
@@ -26,5 +20,11 @@ function saveButtonSubmit(evt) {
   profileSubtitle.textContent = jobInput.value;
   popupToggle();
 }
+
+// при клике на кнопку с карандашом
+editButton.addEventListener('click', popupToggle);
+
+// при клике на иконку крестика удаляет класс popup_opened
+closeButton.addEventListener('click', popupToggle);
 
 popupForm.addEventListener('submit', saveButtonSubmit);
