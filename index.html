@@ -9,6 +9,7 @@
   <meta name="author" content="Андрей Шалаев">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
+  <script src="scripts/index.js"></script>
 </head>
 
 <body class="page">
@@ -32,14 +33,37 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_name_profile">
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popup-form">
-          <input class="popup__name-input" type="text" name="name-input" value="Жак-Ив Кусто" placeholder="Имя">
-          <input class="popup__job-input" type="text" name="job-input" value="Исследователь океана" placeholder="О себе">
+        <form class="popup__form" name="popup-form-profile">
+          <input class="popup__input popup__input_name_your-name" type="text" name="input-your-name" value="Жак-Ив Кусто" placeholder="Имя">
+          <input class="popup__input popup__input_name_job" type="text" name="input-job" value="Исследователь океана" placeholder="О себе">
           <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_name_add-card">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="popup-form-add-card">
+          <input
+            class="popup__input popup__input_name_card-name"
+            type="text"
+            name="input-card-name"
+            value=""
+            placeholder="Название"
+          >
+          <input
+            class="popup__input popup__input_name_card-link"
+            type="text"
+            name="input-card-link"
+            value=""
+            placeholder="Ссылка на картинку"
+          >
+          <button class="popup__save-button" type="submit">Создать</button>
         </form>
       </div>
     </div>
