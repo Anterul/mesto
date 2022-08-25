@@ -19,10 +19,13 @@ const popupAddCardCloseButton = popupAddCard.querySelector('.popup__close-button
 const popupAddCardForm = popupAddCard.querySelector('.popup__form')
 const cardNameInput = popupAddCard.querySelector('.popup__input_name_card-name');
 const cardLinkInput = popupAddCard.querySelector('.popup__input_name_card-link');
-//  блок template
+//  блок popup_name_picture
+const popupPicture = page.querySelector('.popup_name_picture');
+const popupPictureCloseButton = popupPicture.querySelector('.popup__close-button');
+//  контент блока template
 const templateElement = page.querySelector('.template').content;
 
-//  ------------------------------------------ массив из задания и его перебор --------------------------------------------
+//  ------------------------------- массив из задания и его перебор --------------------------------
 
 const initialCards = [
   {
@@ -58,41 +61,47 @@ initialCards.forEach((item) => {
   cardTemplate.querySelector('.card__title').textContent = item.name;
   cardTemplate.querySelector('.card__image').src = item.link;
   cardTemplate.querySelector('.card__image').alt = item.name;
-  cardTemplate.querySelector('.card__like-button').addEventListener('click', cardLikeButton);
-  cardTemplate.querySelector('.card__delete-button').addEventListener('click', cardDeleteButton);
+  cardTemplate.querySelector('.card__image').addEventListener('click', openPopupPicture);
+  cardTemplate.querySelector('.card__like-button').addEventListener('click', likeCard);
+  cardTemplate.querySelector('.card__delete-button').addEventListener('click', deleteCard);
   cards.append(cardTemplate); // в cards записывается card на каждой итерации перебора
 });
 
-//  ----------------------------------------  функции  ------------------------------------------------------------------
+//  ----------------------------------------  функции  ---------------------------------------------
 
 //  функция, которая добавляет класс popup_opened если eго нет и убирает если он есть для первого popup
-function popupProfileOnOff() {
+function onOffPopupProfile() {
   popupProfile.classList.toggle('popup_opened');
 }
 
 //  функция, которая передаёт строки из input.value в заголовок и подзаголовок блока profile
-function popupProfileSaveButton(evt) {
+function transmissionFromProfileInputs(evt) {
   evt.preventDefault();
   profileTitle.textContent = yourNameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  popupProfileOnOff();
+  onOffPopupProfile();
 }
 
 //  функция, которая добавляет класс popup_opened если eго нет и убирает если он есть для второго popup
-function popupAddCardOnOff() {
+function onOffPopupAddCard() {
   popupAddCard.classList.toggle('popup_opened');
 }
 
 //  функция, которая объявляет в переменную ближайшую от клика карточку и удаляет её
-function cardDeleteButton(evt) {
+function deleteCard(evt) {
   const closestDeleteButton = evt.target.closest('.card');
   closestDeleteButton.remove();
 }
 
 //  функция, которая объявляет в переменную ближайшую от клика кнопку лайка и добавляет/удаляет класс
-function cardLikeButton(evt) {
+function likeCard(evt) {
   const closestLikeButton = evt.target.closest('.card__like-button');
   closestLikeButton.classList.toggle('card__like-button_active');
+}
+
+//  функция, которая добавляет класс popup_opened если eго нет и убирает если он есть для третьего popup
+function onOffPopupPicture() {
+  popupPicture.classList.toggle('popup_opened');
 }
 
 //  функция, которая клонирует карточку из template, передаёт ей строки из инпутов второго попапа, 
@@ -103,30 +112,43 @@ function addCard(evt) {
   cardTemplate.querySelector('.card__title').textContent = cardNameInput.value;
   cardTemplate.querySelector('.card__image').src = cardLinkInput.value;
   cardTemplate.querySelector('.card__image').alt = cardNameInput.value;
-  cardTemplate.querySelector('.card__like-button').addEventListener('click', cardLikeButton);
-  cardTemplate.querySelector('.card__delete-button').addEventListener('click', cardDeleteButton);
+  cardTemplate.querySelector('.card__image').addEventListener('click', openPopupPicture);
+  cardTemplate.querySelector('.card__like-button').addEventListener('click', likeCard);
+  cardTemplate.querySelector('.card__delete-button').addEventListener('click', deleteCard);
   cards.prepend(cardTemplate); // в cards записывается клонированная и измененная card 
   cardNameInput.value = "";
   cardLinkInput.value = "";
-  popupAddCardOnOff();
+  onOffPopupAddCard();
 }
 
-// -----------------------------------------  слушатели  ------------------------------------------------------------------
+// функция, которая открывает третий попап и передаёт в него crs и alt выбранной карточки
+function openPopupPicture(evt) {
+  onOffPopupPicture();
+  popupPicture.querySelector('.popup__image').src = evt.target.closest('.card__image').src;
+  popupPicture.querySelector('.popup__image').alt = evt.target.closest('.card__image').alt;
+  popupPicture.querySelector('.popup__title_type_picture').textContent = evt.target.closest('.card__image').alt;
+}
 
-// слушатель, при клике по кнопке edit(карандаш) вызывает функцию popupProfileOnOff
-editButton.addEventListener('click', popupProfileOnOff);
 
-// слушатель, при клике на closeButton(иконка крестика) вызывает функцию popupProfileOnOff
-popupProfileCloseButton.addEventListener('click', popupProfileOnOff);
+// -------------------------------------  слушатели  -----------------------------------------------
 
-// слушатель, при клике по кнопке в попапе "Сохранить" вызывает функцию popupProfileSaveButton
-popupProfileForm.addEventListener('submit', popupProfileSaveButton);
+//  слушатель, при клике по кнопке edit(карандаш) вызывает функцию onOffPopupProfile
+editButton.addEventListener('click', onOffPopupProfile);
 
-// слушатель, при клике по кнопке add(плюс) вызывает функцию popupAddCardOnOff
-addButton.addEventListener('click', popupAddCardOnOff);
+//  слушатель, при клике на closeButton(иконка крестика) вызывает функцию onOffPopupProfile
+popupProfileCloseButton.addEventListener('click', onOffPopupProfile);
 
-//  // слушатель, при клике на closeButton(иконка крестика) вызывает функцию popupAddCardOnOff
-popupAddCardCloseButton.addEventListener('click', popupAddCardOnOff);
+//  слушатель, при клике по кнопке в попапе "Сохранить" вызывает функцию transmissionFromProfileInputs
+popupProfileForm.addEventListener('submit', transmissionFromProfileInputs);
 
-// слушатель, при клике по кнопке в попапе "Создать" вызывает функцию popupProfileSaveButton
+//  слушатель, при клике по кнопке add(плюс) вызывает функцию onOffPopupAddCard
+addButton.addEventListener('click', onOffPopupAddCard);
+
+//  слушатель, при клике на closeButton(иконка крестика) вызывает функцию onOffPopupAddCard
+popupAddCardCloseButton.addEventListener('click', onOffPopupAddCard);
+
+//  слушатель, при клике по кнопке в попапе "Создать" вызывает функцию addCard
 popupAddCardForm.addEventListener('submit', addCard);
+
+// слушатель, при клике по кнопке closeButton(иконка крестика) вызывает функцию onOffPopupPicture
+popupPictureCloseButton.addEventListener('click', onOffPopupPicture);
