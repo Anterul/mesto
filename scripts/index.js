@@ -91,13 +91,9 @@ function createCard(cardLink, cardName) {
     openPopupPicture(cardTemplateImage.src, cardTemplateTitle.textContent);
   });
 
-  cardTemplateDeleteButton.addEventListener('click', () => {
-    deleteCard(cardTemplate);
-  });
+  cardTemplateDeleteButton.addEventListener('click', () => { deleteCard(cardTemplate) });
 
-  cardTemplateLikeButton.addEventListener('click', () => {
-    likeCard(cardTemplateLikeButton);
-  });
+  cardTemplateLikeButton.addEventListener('click', () => { likeCard(cardTemplateLikeButton) });
 
   return cardTemplate;
 }
@@ -116,18 +112,18 @@ function addCard(evt) {
 }
 
 // первый попап: открыть, сабмит, закрыть
-profileEditButton.addEventListener('click', () => { openPopup(popupProfile) });
-popupProfileForm.addEventListener('submit', transmissionFromProfileInputs);
-popupProfileCloseButton.addEventListener('click', () => {
-  closePopup(popupProfile);
+profileEditButton.addEventListener('click', () => {
   resetInputs(yourNameInput, jobInput, profileTitle.textContent, profileSubtitle.textContent);
+  openPopup(popupProfile);
 });
+popupProfileForm.addEventListener('submit', transmissionFromProfileInputs);
+popupProfileCloseButton.addEventListener('click', () => { closePopup(popupProfile) });
 
-profileAddButton.addEventListener('click', () => { openPopup(popupAddCard) });
-popupAddCardForm.addEventListener('submit', addCard);
-popupAddCardCloseButton.addEventListener('click', () => {
-  closePopup(popupAddCard);
+profileAddButton.addEventListener('click', () => {
   resetInputs(cardNameInput, cardLinkInput);
+  openPopup(popupAddCard);
 });
+popupAddCardForm.addEventListener('submit', addCard);
+popupAddCardCloseButton.addEventListener('click', () => { closePopup(popupAddCard) });
 
 popupPictureCloseButton.addEventListener('click', () => { closePopup(popupPicture) });
