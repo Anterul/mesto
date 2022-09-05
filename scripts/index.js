@@ -29,25 +29,28 @@ const popupPictureTitle = popupPicture.querySelector('.popup__title_type_picture
 // контент блока template
 const templateElement = page.querySelector('.template').content;
 
+// функция, которая закрыват попап(с классом opened) при нажатии escape
+function escapePopup(evt) {
+  if (evt.key === 'Escape' && page.querySelector('.popup_opened')) {
+    const closestPopup = page.querySelector('.popup_opened');
+    closestPopup.classList.remove('popup_opened');
+  }
+}
+
 // функция, которая добавляет класс popup_opened аргументу(попапу)
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  page.addEventListener('keydown', (evt) => { escapePopup(evt) });
 } 
 
-// функция, которая удаляет класс popup_opened у аргумента
+// функция, которая удаляет класс popup_opened у ближайщего от клика попапа
 function closePopup(evt) {
   if (evt.target.classList.contains('popup__close-button') ||
   evt.target.classList.contains('popup__save-button') ||
   evt.target.classList.contains('popup')) {
     evt.target.closest('.popup').classList.remove('popup_opened');
   }
-}
-
-function escapePopup(evt) {
-  if (evt.key === 'Escape' && page.querySelector('.popup_opened')) {
-    const closestPopup = page.querySelector('.popup_opened');
-    closestPopup.classList.remove('popup_opened');
-  }
+  page.removeEventListener('keydown', (evt) => { escapePopup(evt) });
 }
 
 // функция, которая добавляет/удаляет класс активного лайка
@@ -72,10 +75,17 @@ function transmissionFromProfileInputs(evt) {
   closePopup(evt);
 }
 
-// функция, которая сбрасывает инпуты
+// функция, которая сбрасывает инпуты и спаны
 function resetInputs(toFirstInput, toSecondInput, fromOne = '', fromTwo = '') {
   toFirstInput.value = fromOne
+  toFirstInput.classList.remove('popup__input_type_error');
+  const firstSpan = document.querySelector(`#${toFirstInput.id}-error`);
+  firstSpan.textContent = '';
+
   toSecondInput.value = fromTwo
+  toSecondInput.classList.remove('popup__input_type_error');
+  const secondSpan = document.querySelector(`#${toSecondInput.id}-error`);
+  secondSpan.textContent = '';
 }
 
 // функция, которая передаёт сылку и название картинки клонированной карточки в третий попап
@@ -121,15 +131,12 @@ function addCard(evt) {
 }
 
 
-// первый попап: открыть, сабмит
+// первый попап: сбросить инпуты и открыть , сабмит
 profileEditButton.addEventListener('click', () => {
   resetInputs(yourNameInput, jobInput, profileTitle.textContent, profileSubtitle.textContent);
   openPopup(popupProfile);
 });
-popupProfileForm.addEventListener('submit', (evt) => {
-  transmissionFromProfileInputs(evt);
-  setSubmitButtonState(popupProfileForm.validity.valid, popupProfileSaveButton);
-});
+popupProfileForm.addEventListener('submit', (evt) => { transmissionFromProfileInputs(evt) });
 
 // второй попап
 profileAddButton.addEventListener('click', () => {
@@ -138,13 +145,14 @@ profileAddButton.addEventListener('click', () => {
 });
 popupAddCardForm.addEventListener('submit', (evt) => { addCard(evt) });
 
-
+// удалить/лайкнуть ближайшую от клика карточку, открыть третий попап по ближайшему от клика image
 cards.addEventListener('click', (evt) => {
   deleteCard(evt);
   likeCard(evt);
   openPopupPicture(evt);
 });
 
+// универсальный закрыватель попапов
 page.addEventListener('click' , (evt) => { closePopup(evt) });
-page.addEventListener('keydown', (evt) => { escapePopup(evt) });
+
 
