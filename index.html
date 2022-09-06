@@ -36,7 +36,7 @@
       <div class="popup__container popup__container_type_form">
         <button class="popup__close-button" type="button"></button>
         <h2 class="popup__title popup__title_type_form">Редактировать профиль</h2>
-        <form class="popup__form" name="popupFormProfile">
+        <form class="popup__form" name="popupFormProfile" novalidate>
           <input
             class="popup__input"
             id="yourName"
@@ -71,7 +71,7 @@
       <div class="popup__container popup__container_type_form">
         <button class="popup__close-button" type="button"></button>
         <h2 class="popup__title popup__title_type_form">Новое место</h2>
-        <form class="popup__form" name="popupFormAddCard">
+        <form class="popup__form" name="popupFormAddCard" novalidate>
           <input
             class="popup__input"
             id="cardName"
@@ -119,8 +119,9 @@
     </article>
   </template>
   <script src="./scripts/cards.js"></script>
-  <script src="./scripts/index.js"></script>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js"></script>
+  
 </body>
 
 </html>
