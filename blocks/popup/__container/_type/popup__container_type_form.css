@@ -1,8 +1,8 @@
 .popup__container_type_form {
   max-width: 282px;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-  align-self: flex-end;
   background-color: #fff;
   border-radius: 10px;
 }

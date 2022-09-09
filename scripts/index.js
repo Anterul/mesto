@@ -94,9 +94,7 @@ function createCard(cardLink, cardName) {
   cardTemplateImage.alt = cardName;
   cardTemplateTitle.textContent = cardName;
 
-  cardTemplateImage.addEventListener('click', () => {
-    openPopupPicture(cardTemplateImage.src, cardTemplateTitle.textContent);
-  });
+  cardTemplateImage.addEventListener('click', () => { openPopupPicture(cardLink, cardName) });
   cardTemplateDeleteButton.addEventListener('click', () => { deleteCard(cardTemplate) });
   cardTemplateLikeButton.addEventListener('click', () => { likeCard(cardTemplateLikeButton) });
 
@@ -115,7 +113,7 @@ function addCard(evt) {
 
 profileEditButton.addEventListener('click', () => {
   resetPopupProfileForm();
-  enableValidation(validationConfig);
+  showButton(popupProfileSaveButton, validationConfig);
   openPopup(popupProfile);
 });
 popupProfileForm.addEventListener('submit', transmissionFromProfileInputs);
@@ -123,7 +121,7 @@ popupProfileCloseButton.addEventListener('click', () => { closePopup(popupProfil
 
 profileAddButton.addEventListener('click', () => {
   resetPopupAddCardForm();
-  enableValidation(validationConfig);
+  hideButton(popupProfileCreateButton, validationConfig);
   openPopup(popupAddCard);
 });
 popupAddCardForm.addEventListener('submit', addCard);

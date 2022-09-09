@@ -33,13 +33,21 @@ function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => { return !inputElement.validity.valid });
 }
 
+function hideButton(buttonElement, config) {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+}
+
+function showButton(buttonElement, config) {
+  buttonElement.classList.remove(config.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+}
+
 function setButtonState(inputList, buttonElement, config) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    hideButton(buttonElement, config);
   } else {
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
+    showButton(buttonElement, config);
   }
 }
 
@@ -63,4 +71,3 @@ function enableValidation(config) {
 }
 
 enableValidation(validationConfig);
-

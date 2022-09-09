@@ -1,9 +1,8 @@
 .popup {
   position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  margin: 0 auto;
-  padding-top: 123px;
+  margin: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

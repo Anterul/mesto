@@ -1,7 +1,3 @@
-.popup_name_profile {
-  padding-top: 123px;
-}
-
 .popup_name_profile::before {
   content: '';
   position: absolute;
@@ -11,10 +7,4 @@
   height: 100%;
   background-color: #000;
   opacity: .5;
-}
-
-@media screen and (min-width: 1024px) {
-  .popup_name_profile {
-    padding-top: 186px;
-  }
 }

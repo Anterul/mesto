@@ -1,5 +1,6 @@
 .popup_name_picture {
-  padding-top: 136px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .popup_name_picture::before {
@@ -11,10 +12,4 @@
   height: 100%;
   background-color: #000;
   opacity: .9;
-}
-
-@media screen and (min-width: 768px) {
-  .popup_name_picture {
-    padding-top: 90px;
-  }
 }
