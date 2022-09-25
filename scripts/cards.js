@@ -1,4 +1,6 @@
-//  массив из задания
+import { Card } from './Card.js';
+import { cardsContainer } from './index.js';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -25,3 +27,9 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+initialCards.forEach((item) => {
+  const card = new Card(item.link, item.name, '.template');
+  const cardElement = card.generateCard();
+  cardsContainer.append(cardElement);
+});
