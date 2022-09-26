@@ -1,6 +1,3 @@
-import { Card } from './Card.js';
-import { cardsContainer } from './index.js';
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -28,8 +25,4 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach((item) => {
-  const card = new Card(item.link, item.name, '.template');
-  const cardElement = card.generateCard();
-  cardsContainer.append(cardElement);
-});
+export { initialCards };

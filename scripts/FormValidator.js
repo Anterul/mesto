@@ -10,7 +10,7 @@ class FormValidator {
     errorElement.classList.add(this._config.errorClass);
     errorElement.textContent = errorMessage;
   }
-  
+
   _hideError(inputElement) {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._config.inputErrorClass);
@@ -30,22 +30,29 @@ class FormValidator {
     return this._inputList.some((inputElement) => { return !inputElement.validity.valid });
   }
 
-  _hideButton() {
+  _disableButton() {
     this._saveButtonElement.classList.add(this._config.inactiveButtonClass);
     this._saveButtonElement.setAttribute('disabled', true);
   }
-  
-  _showButton() {
+
+  _activateButton() {
     this._saveButtonElement.classList.remove(this._config.inactiveButtonClass);
     this._saveButtonElement.removeAttribute('disabled');
   }
-  
+
   _setButtonState() {
     if (this._hasInvalidInput()) {
-      this._hideButton();
+      this._disableButton();
     } else {
-      this._showButton();
+      this._activateButton();
     }
+  }
+
+  resetValidation() {
+    this._setButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement);
+    });
   }
 
   enableValidation() {
@@ -61,4 +68,4 @@ class FormValidator {
   }
 }
 
-export { FormValidator }
+export { FormValidator };
