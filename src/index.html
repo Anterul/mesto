@@ -7,7 +7,7 @@
   <meta name="description" content="Mesto Russia">
   <meta name="keywords" content="mesto">
   <meta name="author" content="Андрей Шалаев">
-  <!-- <link rel="stylesheet" href="../pages/index.css"> -->
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto Russia</title>
 </head>
 
@@ -18,7 +18,8 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('../images/cousteau.png')%>" alt="Кусто">
+        <!-- <img class="profile__avatar" src="./images/cousteau.png" alt="Кусто"> -->
+        <img class="profile__avatar" src="<%=require('./images/cousteau.png')%>" alt="Кусто">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__edit-button" type="button"></button>
@@ -118,7 +119,7 @@
       </div>
     </article>
   </template>
-  <!-- <script src="../pages/index.js" type="module"></script> -->
+  <!-- <script src="./pages/index.js" type="module"></script> -->
   
 </body>
 </html>

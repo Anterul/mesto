@@ -87,11 +87,13 @@ cardList.renderItems();
 
 
 popupPicture.setEventListeners();
+popupAddCard.setEventListeners();
+popupProfile.setEventListeners();
 
 profileEditButton.addEventListener('click', () => {
   popupProfile.open();
   profileForm.resetValidation();
-  popupProfile.setEventListeners();
+  
 
   const userInfoObject = userInfo.getUserInfo();
   yourNameInput.value = userInfoObject.yourName;
@@ -101,5 +103,5 @@ profileEditButton.addEventListener('click', () => {
 profileAddButton.addEventListener('click', () => {
   popupAddCard.open();
   addCardForm.resetValidation();
-  popupAddCard.setEventListeners();
+  
 });
