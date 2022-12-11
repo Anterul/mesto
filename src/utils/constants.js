@@ -1,12 +1,3 @@
-/*
-import arkhyz from 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg';
-import chelyabinsk from 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg';
-import ivanovo from 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg';
-import kamchatka from 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg';
-import kholmogorsky from 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg';
-import baikal from 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg';
-*/
-
 export const initialCards = [
   {
     name: 'Архыз',
@@ -45,18 +36,12 @@ export const profileAddButton = page.querySelector('.profile__add-button');
 export const cardsContainer = '.cards';
 // блок popup_name_profile
 export const popupProfileSelector = '.popup_name_profile';
-export const popupProfileForm = document.forms.popupFormProfile;
-export const yourNameInput = popupProfileForm.elements.yourName;
-export const jobInput = popupProfileForm.elements.job;
 // блок popup_name_add-card
 export const popupAddCardSelector = '.popup_name_add-card';
-export const popupAddCardForm = document.forms.popupFormAddCard;
-export const cardNameInput = popupAddCardForm.elements.cardName;
-export const cardLinkInput = popupAddCardForm.elements.cardLink;
 // блок popup_name_picture
 export const popupPictureSelector = '.popup_name_picture';
-// все кнопки с крестиком
-export const closeButtons = document.querySelectorAll('.popup__close-button');
+//
+export const formValidators = {};
 
 export const validationConfig = {
   formSelector: '.popup__form',

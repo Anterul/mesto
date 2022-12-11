@@ -7,7 +7,6 @@
   <meta name="description" content="Mesto Russia">
   <meta name="keywords" content="mesto">
   <meta name="author" content="Андрей Шалаев">
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto Russia</title>
 </head>
 
@@ -18,7 +17,7 @@
     </header>
     <main class="content">
       <section class="profile">
-        <!-- <img class="profile__avatar" src="./images/cousteau.png" alt="Кусто"> -->
+        
         <img class="profile__avatar" src="<%=require('./images/cousteau.png')%>" alt="Кусто">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -54,7 +53,7 @@
             class="popup__input"
             id="job"
             type="text"
-            name="job"
+            name="yourJob"
             value="Исследователь океана"
             placeholder="О себе"
             minlength="2"
@@ -77,7 +76,7 @@
             class="popup__input"
             id="cardName"
             type="text"
-            name="cardName"
+            name="name"
             value=""
             placeholder="Название"
             minlength="2"
@@ -89,7 +88,7 @@
             class="popup__input"
             id="cardLink"
             type="url"
-            name="cardLink"
+            name="link"
             value=""
             placeholder="Ссылка на картинку"
             required
@@ -119,7 +118,6 @@
       </div>
     </article>
   </template>
-  <!-- <script src="./pages/index.js" type="module"></script> -->
   
 </body>
 </html>

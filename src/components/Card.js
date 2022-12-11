@@ -4,6 +4,7 @@ export default class Card {
     this._name = itemName;
     this._templateElement = templateElement;
     this._handleCardClick = handleCardClick;
+    
   }
 
   _getTemplate() {
