@@ -1,10 +1,12 @@
 export default class Api {
-  constructor({headers}) {
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl;
     this.authorization = headers.authorization;
   }
 
-  getUserInfo({ baseUrl }) {
-    return fetch(baseUrl, {
+  getUserInfo(url) {
+    return fetch(url, {
+      method: 'GET',
       headers: {
         authorization: this.authorization,
       }
@@ -18,8 +20,9 @@ export default class Api {
     })
   }
 
-  getInitialCards({ baseUrl }) {
-    return fetch(baseUrl, {
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
       headers: {
         authorization: this.authorization,
       }
@@ -33,8 +36,8 @@ export default class Api {
     })
   }
 
-  submitProfileData({ baseUrl }, name, about) {
-    return fetch(baseUrl, {
+  submitProfileData(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this.authorization,
@@ -45,14 +48,20 @@ export default class Api {
         about: about
       })
     })
+    .then((response) => {
+      if(response.ok) {
+        return response.json();
+      } else {
+        return Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
+      }
+    })
   }
 
-  deleteCard({ baseUrl }) {
-    return fetch(baseUrl, {
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: this.authorization,
-        'Content-Type': 'application/json'
       },
     })
     .then((response) => {
@@ -64,8 +73,8 @@ export default class Api {
     })
   }
 
-  addNewCard({ baseUrl }, name, link) {
-    return fetch(baseUrl, {
+  addNewCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
         authorization: this.authorization,
@@ -85,12 +94,11 @@ export default class Api {
     })
   }
 
-  likeCard({ baseUrl }) {
-    return fetch(baseUrl, {
+  likeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: {
         authorization: this.authorization,
-        'Content-Type': 'application/json'
       },
     })
     .then((response) => {
@@ -102,12 +110,11 @@ export default class Api {
     })
   }
 
-  dislikeCard({ baseUrl }) {
-    return fetch(baseUrl, {
+  dislikeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: this.authorization,
-        'Content-Type': 'application/json'
       },
     })
     .then((response) => {
@@ -119,15 +126,15 @@ export default class Api {
     })
   }
 
-  updateAvatar({ baseUrl }, avatar) {
-    return fetch(baseUrl, {
+  updateAvatar(avatarUrl) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this.authorization,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        avatar: avatar
+        avatar: avatarUrl
       })
     })
     .then((response) => {

@@ -36,15 +36,25 @@ const enableAllFormValidation = (config) => {
 };
 enableAllFormValidation(validationConfig);
 
-function toggleLike(cardIsLiked, itemId) {
+function toggleLike(card, cardIsLiked, itemId) {
   if (!cardIsLiked) {
-    api.likeCard({ 
-      baseUrl: `https://mesto.nomoreparties.co/v1/cohort-57/cards/${itemId}/likes`
+    api.likeCard(itemId)
+    .then((data) => {
+      card.setLikes(data.likes.length);
+      card.switchIsLiked();
     })
+    .catch((error) => {
+      console.log(`Ошибка: ${error}`);
+    });
   } else {
-    api.dislikeCard({
-      baseUrl: `https://mesto.nomoreparties.co/v1/cohort-57/cards/${itemId}/likes`
+    api.dislikeCard(itemId)
+    .then((data) => {
+      card.setLikes(data.likes.length);
+      card.switchIsLiked();
     })
+    .catch((error) => {
+      console.log(`Ошибка: ${error}`);
+    });
   }
 }
 
@@ -52,22 +62,26 @@ function createCard(item) {
   const card = new Card(
     item,
     '.template',
+    'd84a187fdaa1defe11442536',
     {
       handleCardClick: () => {
         popupPicture.open(item.link, item.name);
       },
-      handleDeleteButtonClick: () => {
+      handleDeleteIconClick: () => {
         popupDelete.open();
-        popupDelete.submitCallback(
-          { api:
-            api.deleteCard({ 
-              baseUrl: `https://mesto.nomoreparties.co/v1/cohort-57/cards/${item._id}` 
-            })
-          }
-        );
+        popupDelete.setSubmitAction(() => {
+          api.deleteCard(item._id)
+          .then(() => {
+            card.deleteCard();
+            popupDelete.close();
+          })
+          .catch((error) => {
+            console.log(`Ошибка: ${error}`);
+          });
+        })
       },
       toggleLike: () => {
-        toggleLike(cardIsLiked, item._id);
+        toggleLike(card, card._isLiked, item._id);
       }
     }
   );
@@ -77,9 +91,10 @@ function createCard(item) {
 }
 
 const api = new Api({
+  baseUrl: `https://mesto.nomoreparties.co/v1/cohort-57`,
   headers: {
-    authorization: 'cc8211c2-a478-4e6c-819c-a7ec6fb1096c',
-  } 
+    authorization: 'cc8211c2-a478-4e6c-819c-a7ec6fb1096c'
+  }
 });
 
 const cardList = new Section({
@@ -90,14 +105,12 @@ const cardList = new Section({
 }, cardsContainer);
 
 
-api.getInitialCards({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-57/cards'
-})
+api.getInitialCards()
   .then((result) => {
     cardList.renderItems(result);
   })
   .catch((error) => {
-    console.log(error);
+    console.log(`Ошибка: ${error}`);
   });
 
 const userInfo = new UserInfo({
@@ -106,14 +119,12 @@ const userInfo = new UserInfo({
   avatarSelector: profileAvatarSelector
 });
 
-api.getUserInfo({
-  baseUrl: 'https://nomoreparties.co/v1/cohort-57/users/me'
-})
+api.getUserInfo('https://nomoreparties.co/v1/cohort-57/users/me')
   .then((result) => {
     userInfo.setUserInfo(result.name, result.about, result.avatar);
   })
   .catch((error) => {
-    console.log(error);
+    console.log(`Ошибка: ${error}`);
   });
 
 const popupPicture = new PopupWithImage(popupPictureSelector);
@@ -122,11 +133,13 @@ const popupProfile = new PopupWithForm(
   popupProfileSelector,
   {
     submitCallback: (item) => {
-      api.submitProfileData(
-        { baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-57/users/me' },
-        item.yourName,
-        item.yourJob
-      )
+      api.submitProfileData(item.yourName, item.yourJob)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about, data.avatar);
+      })
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
     }
   }
 );
@@ -135,11 +148,14 @@ const popupAddCard = new PopupWithForm(
   popupAddCardSelector,
   {
     submitCallback: (item) => {
-      api.addNewCard(
-        { baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-57/cards' },
-        item.name,
-        item.link
-      )
+      api.addNewCard(item.name, item.link)
+      .then((data) => {
+        const cardElement = createCard(data);
+        cardList.prependItem(cardElement);
+      })
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
     }
   }
 );
@@ -150,10 +166,13 @@ const popupUpdateAvatar = new PopupWithForm(
   popupUpdateAvatarSelector,
   {
     submitCallback: (item) => {
-      api.updateAvatar(
-        { baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-57/users/me/avatar'},
-        item.avatar
-      )
+      api.updateAvatar(item.avatar)
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about, data.avatar);
+      })
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
     }
   }
 );
