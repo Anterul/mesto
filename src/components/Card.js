@@ -3,6 +3,7 @@ export default class Card {
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
+    this._cardId = data._id;
     this._ownerId = data.owner._id;
     this._templateElement = templateElement;
     this._userId = userId;
@@ -39,15 +40,21 @@ export default class Card {
     return this._element;
   }
 
-  _checkLike() {
-    this._likes.forEach((like)=> {
-      if (like._id === this._userId) {
-        this._isLiked = true;
-        this._likeButton.classList.add('card__like-button_active');
-      } else {
-        this._likeButton.classList.remove('card__like-button_active');
-      }
-    })
+  _checkIsLiked() {
+    if (this._likes.some(like => like._id === this._userId)) {
+      this._isLiked = true;
+      this._likeButton.classList.add('card__like-button_active');
+    } else {
+      this._likeButton.classList.remove('card__like-button_active');
+    }
+  }
+  
+  getId() {
+    return this._cardId;
+  }
+
+  isLiked() {
+    return this._isLiked;
   }
 
   setLikes(likesCount) {
@@ -56,22 +63,28 @@ export default class Card {
   }
 
   switchIsLiked() {
-    this._isLiked = !this._isLiked;
+    if (this._isLiked) {
+      this._isLiked = !this._isLiked;
+      this._likeButton.classList.remove('card__like-button_active');
+    } else {
+      this._isLiked = !this._isLiked;
+      this._likeButton.classList.add('card__like-button_active');
+    }
   }
   
   deleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
     this._likeButton = this._element.querySelector('.card__like-button');
     this._likeButton.addEventListener('click', () => {
-      this._likeButton.classList.toggle('card__like-button_active');
       this._toggleLike();
     });
 
     this._deleteButton = this._element.querySelector('.card__delete-button');
-    if (this._ownerId != this._userId) {
+    if (!(this._ownerId === this._userId)) {
       this._deleteButton.remove();
     } else {
       this._deleteButton.addEventListener('click', () => {
@@ -83,6 +96,6 @@ export default class Card {
       this._handleCardClick();
     });
 
-    this._checkLike();
+    this._checkIsLiked();
   }
 }

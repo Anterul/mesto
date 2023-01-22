@@ -15,7 +15,6 @@ export default class PopupDeleteCard extends Popup {
     this._popupYesButton.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitCallback();
-      //this.close();
     });
   }
 }

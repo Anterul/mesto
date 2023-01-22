@@ -1,8 +1,7 @@
 export default class Section {
-  constructor({ renderer }, constainerSelector) {
-    //this._items = items;
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
-    this._container = document.querySelector(constainerSelector);
+    this._container = document.querySelector(containerSelector);
   }
 
   renderItems(items) {
@@ -11,11 +10,7 @@ export default class Section {
     });
   }
 
-  renderCard(item) {
-    this._renderer(item);
-  }
-
-  addItem(element) {
+  appendItem(element) {
     this._container.append(element);
   }
 

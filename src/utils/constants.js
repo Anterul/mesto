@@ -11,16 +11,17 @@ export const profileUpdateButton = page.querySelector('.profile__update-button')
 export const cardsContainer = '.cards';
 // блок popup_name_profile
 export const popupProfileSelector = '.popup_name_profile';
+export const popupProfileForm = document.querySelector('#popupProfileForm')
 // блок popup_name_add-card
 export const popupAddCardSelector = '.popup_name_add-card';
+export const popupAddCardForm = document.querySelector('#popupFormAddCard');
 // блок popup_name_picture
 export const popupPictureSelector = '.popup_name_picture';
-//
+// блок popup_name_delete-card
 export const popupDeleteCardSelector = '.popup_name_delete-card';
-//
+// блок popup_name_update-avatar
 export const popupUpdateAvatarSelector = '.popup_name_update-avatar';
-//
-export const formValidators = {};
+export const popupUpdateAvatarForm = document.querySelector('#popupUpdateAvatarForm');
 
 export const validationConfig = {
   formSelector: '.popup__form',
