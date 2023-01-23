@@ -26,12 +26,12 @@ import {
 } from '../utils/constants.js';
 import '../pages/index.css';
 
-const profileForm = new FormValidator(validationConfig, popupProfileForm); 
-const addCardForm = new FormValidator(validationConfig, popupAddCardForm);
-const updateAvatarForm = new FormValidator(validationConfig, popupUpdateAvatarForm);
-profileForm.enableValidation(); 
-addCardForm.enableValidation();
-updateAvatarForm.enableValidation();
+const profileFormValidator = new FormValidator(validationConfig, popupProfileForm); 
+const cardFormValidator = new FormValidator(validationConfig, popupAddCardForm);
+const avatarFormValidator = new FormValidator(validationConfig, popupUpdateAvatarForm);
+profileFormValidator.enableValidation(); 
+cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 const api = new Api({
   baseUrl: `https://mesto.nomoreparties.co/v1/cohort-57`,
@@ -44,9 +44,9 @@ Promise.all([
   api.getUserInfo('https://nomoreparties.co/v1/cohort-57/users/me'),
   api.getInitialCards()
 ])
-.then((values)=>{
-  userInfo.setUserInfo(values[0]);
-  cardsSection.renderItems(values[1])
+.then(([userData, cards])=>{
+  userInfo.setUserInfo(userData);
+  cardsSection.renderItems(cards);
 })
 .catch((error) => {
   console.log(`Ошибка: ${error}`);
@@ -56,7 +56,6 @@ function toggleLike(card) {
   if (!card.isLiked()) {
     api.likeCard(card.getId())
     .then((data) => {
-      card.switchIsLiked();
       card.setLikes(data.likes.length);
     })
     .catch((error) => {
@@ -65,7 +64,6 @@ function toggleLike(card) {
   } else {
     api.dislikeCard(card.getId())
     .then((data) => {
-      card.switchIsLiked();
       card.setLikes(data.likes.length);
     })
     .catch((error) => {
@@ -126,14 +124,17 @@ const popupProfile = new PopupWithForm(
   popupProfileSelector,
   {
     submitCallback: (profileData) => {
+      popupProfile.setButtonText('Сохранение...');
       api.submitProfileData(profileData.yourName, profileData.yourJob)
       .then((data) => {
         userInfo.setUserInfo(data);
-        popupProfile.returnButtonText();
         popupProfile.close();
       })
       .catch((error) => {
         console.log(`Ошибка: ${error}`);
+      })
+      .finally(() => {
+        popupProfile.returnButtonText();
       });
     }
   }
@@ -143,15 +144,18 @@ const popupAddCard = new PopupWithForm(
   popupAddCardSelector,
   {
     submitCallback: (cardData) => {
+      popupAddCard.setButtonText('Сохранение...');
       api.addNewCard(cardData.name, cardData.link)
       .then((data) => {
         const cardElement = createCard(data);
         cardsSection.prependItem(cardElement);
-        popupAddCard.returnButtonText();
         popupAddCard.close();
       })
       .catch((error) => {
         console.log(`Ошибка: ${error}`);
+      })
+      .finally(() => {
+        popupAddCard.returnButtonText();
       });
     }
   }
@@ -163,14 +167,17 @@ const popupUpdateAvatar = new PopupWithForm(
   popupUpdateAvatarSelector,
   {
     submitCallback: (avatarInfo) => {
+      popupUpdateAvatar.setButtonText('Сохранение...');
       api.updateAvatar(avatarInfo.avatar)
       .then((data) => {
         userInfo.setUserInfo(data);
-        popupUpdateAvatar.returnButtonText();
         popupUpdateAvatar.close();
       })
       .catch((error) => {
         console.log(`Ошибка: ${error}`);
+      })
+      .finally(() => {
+        popupUpdateAvatar.returnButtonText();
       });
     }
   }
@@ -184,16 +191,16 @@ popupUpdateAvatar.setEventListeners();
 
 profileEditButton.addEventListener('click', () => {
   popupProfile.open();
-  profileForm.resetValidation();
+  profileFormValidator.resetValidation();
   popupProfile.setInputValues(userInfo.getUserInfo());
 });
 
 profileAddButton.addEventListener('click', () => {
   popupAddCard.open();
-  addCardForm.resetValidation();
+  cardFormValidator.resetValidation();
 });
 
 profileUpdateButton.addEventListener('click', () => {
   popupUpdateAvatar.open();
-  updateAvatarForm.resetValidation();
+  avatarFormValidator.resetValidation();
 });

@@ -31,8 +31,8 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  setButtonText() {
-    this._saveButton.textContent = 'Сохранение...';
+  setButtonText(newText) {
+    this._saveButton.textContent = newText;
   }
 
   returnButtonText() {
@@ -44,7 +44,6 @@ export default class PopupWithForm extends Popup {
 
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this.setButtonText();
       this._submitCallback(this._getInputValues());
     });
   }
